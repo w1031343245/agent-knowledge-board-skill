@@ -69,6 +69,7 @@ Use this skill to:
    - `realistic-whiteboard`: use `scripts/render_whiteboard_email.py`.
    - `premium-memo`: use `scripts/render_board_email.py`.
    - `markdown-only`: output the hierarchy as Markdown and do not run a renderer.
+   - For personal WeChat image delivery, use `scripts/render_wechat_image_card.py` to build a static HTML card and screenshot it into a PNG from the same board JSON.
    - For design decisions, read `references/layout-spec.md`.
    - For the realistic style direction, read `references/whiteboard-sticky-style.md`.
    - For Markdown-only contexts, use the same hierarchy without the HTML styling.
@@ -116,7 +117,7 @@ Do not ask more than this at startup unless the user's input is unusable.
 - DingTalk receives ActionCard-style payloads.
 - WeCom receives template-card/news-card style payloads when possible.
 - WeChat public account receives article-card/draft structure.
-- Personal WeChat receives share-card copy plus preview image/link; do not rely on unofficial automation.
+- Personal WeChat receives a generated PNG image card as the primary artifact, preferably created from an HTML card screenshot; text copy is only a fallback. Do not rely on unofficial personal-account automation.
 - Markdown is only the fallback preview or fallback body, not the preferred channel artifact.
 - If a channel is unknown, generate a generic link-card spec plus Markdown fallback.
 
@@ -127,6 +128,7 @@ Do not ask more than this at startup unless the user's input is unusable.
 - `references/whiteboard-sticky-style.md`: realistic whiteboard and sticky-note direction.
 - `references/channel-routing.md`: delivery-channel selection rules and output contracts.
 - `scripts/render_channel_message.py`: render channel-specific push plans and message previews from board JSON.
+- `scripts/render_wechat_image_card.py`: build a personal-WeChat-friendly HTML card and screenshot it into a PNG from board JSON.
 - `scripts/render_whiteboard_email.py`: render structured board JSON into the realistic whiteboard style.
 - `scripts/render_board_email.py`: render structured board JSON into the earlier premium memo style.
 - `assets/sample-board.json`: sample data for testing and as a starting point.

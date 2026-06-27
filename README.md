@@ -7,7 +7,7 @@ Use it when you want:
 - realistic whiteboard + sticky-note knowledge digests
 - categorized daily boards from multiple agents or channels
 - optional links to prior notes in a local knowledge base
-- channel-ready card plans for email, web, Feishu/Lark, DingTalk, WeCom, WeChat, and Markdown fallback
+- channel-ready card plans for email, web, Feishu/Lark, DingTalk, WeCom, WeChat image cards, and Markdown fallback
 
 Invoke it as:
 

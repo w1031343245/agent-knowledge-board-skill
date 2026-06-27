@@ -7,7 +7,7 @@ Use this reference when the user asks to push, send, notify, publish, or distrib
 Keep one canonical board JSON. Generate different channel outputs from that JSON:
 
 - Full reading channels get the complete board as visual cards.
-- Chat channels get native or native-like card payloads with a concise preview and full-board link.
+- Chat channels get native, native-like, or image-card artifacts with a concise fallback and full-board link.
 - Public publishing channels get article cards or draft-card structures.
 
 Do not force the realistic whiteboard HTML into chat apps. Instead, translate the same board JSON into each platform's closest card primitive.
@@ -24,7 +24,7 @@ Current `card_payload` values are channel card specs. They are intentionally sha
 | `dingtalk` | ActionCard | Title, short summary, key bullets, button/link | Long nested sections |
 | `wecom` / `enterprise-wechat` | Template card or news card | Title, description, key boards, full-board link | Long article body in chat |
 | `wechat-mp` | Article card / draft structure | Cover/title, digest, sections, sources | Raw webhook notification style |
-| `wechat` | Share card + preview image + manual-forward copy | One-screen card copy and link | Unofficial personal-account automation |
+| `wechat` | PNG image card | One-screen visual card, title, judgment, metrics, 3-5 sections, optional full-board link | Sending long text blocks as the primary message |
 | `markdown` | Markdown card fallback | Complete readable fallback | HTML-only visual assumptions |
 | unknown | Generic link card | Title, judgment, board summaries, full-board link | Pretending unsupported platforms have native cards |
 
@@ -45,7 +45,7 @@ When the user names a channel:
 
 ## Chat Message Budget
 
-For Feishu, DingTalk, WeCom, and personal WeChat cards:
+For Feishu, DingTalk, and WeCom cards:
 
 - Title
 - Date
@@ -56,6 +56,16 @@ For Feishu, DingTalk, WeCom, and personal WeChat cards:
 - Full-board link
 
 Keep the chat card as a door, not the room.
+
+## Personal WeChat Image Card
+
+Personal WeChat should use an actual image message as the primary artifact, not a gray text block or long Markdown message.
+
+- Generate static HTML first, then screenshot it into PNG with `scripts/render_wechat_image_card.py`.
+- Keep the image width at 1080px and let height adapt to content.
+- Show one title, one `今日判断`, 3-4 metrics, and 3-5 compact sections.
+- Use text fallback only for accessibility, manual forwarding, or when image sending fails.
+- Do not use unofficial automation unless the user explicitly accepts that risk.
 
 ## Output Contract
 

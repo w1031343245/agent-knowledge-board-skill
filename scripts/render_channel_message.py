@@ -42,7 +42,7 @@ STRATEGIES = {
     "dingtalk": ("action_card", "card_payload", "full_board_html_url", True),
     "wecom": ("template_or_news_card", "card_payload", "full_board_html_url", True),
     "wechat-mp": ("article_card_draft", "card_payload", "source_links", False),
-    "wechat": ("share_card", "card_payload", "full_board_html_url", True),
+    "wechat": ("image_card", "wechat_image_card_png", "manual_forward_text", False),
     "markdown": ("markdown_card_fallback", "markdown_card", "source_links", False),
 }
 
@@ -190,12 +190,17 @@ def card_payload(data: dict[str, Any], channel: str) -> dict[str, Any]:
         }
     if channel == "wechat":
         return {
-            "type": "wechat_manual_share_card_spec",
+            "type": "wechat_image_card_spec",
             "title": title,
             "description": judgment,
-            "url": full_url,
-            "preview_image_recommended": True,
-            "manual_forward_copy": markdown_preview(data, channel),
+            "recommended_renderer": "render_wechat_image_card.py",
+            "rendering_method": "html_to_png_screenshot",
+            "image_format": "png",
+            "image_size": "1080px wide, height auto",
+            "send_as": "image_message",
+            "url": full_url if full_url != "[完整白板链接待填]" else "",
+            "manual_forward_text": f"{title}：{judgment}\n完整白板：{full_url}",
+            "fallback": markdown_preview(data, channel),
         }
     if channel in {"email", "web"}:
         return {

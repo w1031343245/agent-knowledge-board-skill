@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1080, initial-scale=1">
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; width: 1080px; background: #edf3ed; }
+    body {
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Arial, sans-serif;
+      color: #202124;
+      letter-spacing: 0;
+    }
+    .frame { width: 1080px; padding: 52px; background: #edf3ed; }
+    .card {
+      width: 976px;
+      padding: 44px 40px 52px;
+      border-radius: 34px;
+      background: #fffdf7;
+      box-shadow: 8px 10px 0 rgba(44, 71, 54, .10);
+    }
+    .title {
+      font-size: 38px;
+      line-height: 1.22;
+      font-weight: 800;
+      margin: 0 0 26px;
+    }
+    .judgment {
+      display: grid;
+      grid-template-columns: 22px 108px 1fr;
+      gap: 14px;
+      align-items: start;
+      margin-bottom: 28px;
+      font-size: 27px;
+      line-height: 1.45;
+    }
+    .dot { width: 20px; height: 20px; border-radius: 99px; margin-top: 9px; background: #2f7d57; }
+    .judgment-label { font-weight: 800; white-space: nowrap; }
+    .metrics { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 32px; }
+    .pill {
+      display: inline-flex;
+      min-height: 38px;
+      align-items: center;
+      padding: 4px 18px;
+      border-radius: 999px;
+      background: #edf4ef;
+      font-size: 24px;
+    }
+    .section {
+      padding: 34px 0 30px;
+      border-top: 2px solid #e5e0d6;
+    }
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin-bottom: 18px;
+      font-size: 29px;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+    .section-title span { width: 17px; height: 17px; border-radius: 99px; background: #ff8a34; flex: 0 0 auto; }
+    .section-1 .section-title span { background: #cc4aa2; }
+    .section-2 .section-title span { background: #2d7dbf; }
+    .section-3 .section-title span { background: #db6d2f; }
+    .section-4 .section-title span { background: #2f7d57; }
+    .section-summary {
+      margin: 0 0 14px 30px;
+      color: #667085;
+      font-size: 24px;
+      line-height: 1.45;
+    }
+    .item {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 12px;
+      margin: 14px 0 0 4px;
+    }
+    .diamond {
+      width: 11px;
+      height: 11px;
+      margin-top: 13px;
+      transform: rotate(45deg);
+      background: #2474b5;
+    }
+    .item-title {
+      font-size: 27px;
+      line-height: 1.35;
+      font-weight: 800;
+    }
+    .item-detail {
+      margin-top: 4px;
+      color: #667085;
+      font-size: 23px;
+      line-height: 1.45;
+    }
+    .item-source {
+      margin-top: 3px;
+      color: #1476c9;
+      font-size: 23px;
+      line-height: 1.35;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 760px;
+    }
+    .related {
+      margin-top: 22px;
+      padding: 18px 24px;
+      border-left: 4px solid #e0ddd5;
+      border-radius: 12px;
+      background: #f3f0e8;
+      font-size: 24px;
+      line-height: 1.4;
+    }
+    .full-url {
+      display: flex;
+      gap: 18px;
+      margin-top: 28px;
+      color: #667085;
+      font-size: 23px;
+      line-height: 1.4;
+    }
+    .full-url strong {
+      color: #1476c9;
+      font-weight: 500;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <main class="frame">
+    <article class="card">
+      <h1 class="title">Agent Daily Board · 2026年6月27日 星期六</h1>
+      <div class="judgment">
+        <div class="dot"></div>
+        <div class="judgment-label">今日判断</div>
+        <div>Agent 信息流正在从阅读列表变成自动分拣后的行动入口。</div>
+      </div>
+      <div class="metrics"><span class="pill">5 个白板</span><span class="pill">精选 18 条</span><span class="pill">待阅读 42 条</span></div>
+      
+      <section class="section section-0">
+        <div class="section-title"><span></span>今日必看</div>
+        <div class="section-summary">今日 12 条，精选 4 条 / 主线：自动化系统开始替代人工整理 / 建议动作：确认 1 个可集成入口</div>
+        
+      <div class="item">
+        <div class="diamond"></div>
+        <div class="item-copy">
+          <div class="item-title">后台 Agent 正在成为新的信息入口</div>
+          <div class="item-detail">一句话判断：信息消费会从打开列表转为接收分拣后的判断。</div>
+          <div class="item-source">example.com/agent-workflow</div>
+        </div>
+      </div>
+    
+
+      <div class="item">
+        <div class="diamond"></div>
+        <div class="item-copy">
+          <div class="item-title">工具 A 支持后台定时任务</div>
+          <div class="item-detail">摘要：适合参考其触发器和任务回执设计。</div>
+          <div class="item-source">example.com/tool-a</div>
+        </div>
+      </div>
+    
+      </section>
+    
+
+      <section class="section section-1">
+        <div class="section-title"><span></span>AI / 技术</div>
+        <div class="section-summary">今日 18 条，精选 5 条；主线：Agent 工具转向后台执行。</div>
+        
+      <div class="item">
+        <div class="diamond"></div>
+        <div class="item-copy">
+          <div class="item-title">开发工具开始内置长期任务</div>
+          <div class="item-detail">一句话判断：IDE 与 Agent 的边界正在变薄。</div>
+          <div class="item-source">example.com/dev-agent</div>
+        </div>
+      </div>
+    
+
+      <div class="item">
+        <div class="diamond"></div>
+        <div class="item-copy">
+          <div class="item-title">开源项目 C 增长很快</div>
+          <div class="item-detail">摘要：值得稍后评估是否接入 agent 采集链路。</div>
+          <div class="item-source">example.com/project-c</div>
+        </div>
+      </div>
+    
+      </section>
+    
+      <div class="related">关联知识：[延续] Agent 工作流设计</div>
+      <div class="full-url"><span>完整白板</span><strong>https://example.com/agent/full-board</strong></div>
+    </article>
+  </main>
+</body>
+</html>
