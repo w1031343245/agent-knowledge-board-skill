@@ -1,0 +1,76 @@
+{
+  "title": "Agent Daily Board",
+  "date": "2026年6月27日 星期六",
+  "overall_judgment": "Agent 信息流正在从阅读列表变成自动分拣后的行动入口。",
+  "metrics": [
+    { "label": "5 个白板", "value": "5" },
+    { "label": "精选 18 条", "value": "18" },
+    { "label": "待阅读 42 条", "value": "42" }
+  ],
+  "full_board_url": "https://example.com/agent/full-board",
+  "boards": [
+    {
+      "name": "今日必看",
+      "accent": "#B7791F",
+      "summary": {
+        "count": "今日 12 条，精选 4 条",
+        "thread": "主线：自动化系统开始替代人工整理",
+        "action": "建议动作：确认 1 个可集成入口"
+      },
+      "featured": {
+        "title": "后台 Agent 正在成为新的信息入口",
+        "judgment": "一句话判断：信息消费会从打开列表转为接收分拣后的判断。",
+        "why": "为什么重要：agent 可以从收集器升级为每日决策雷达。",
+        "source": "https://example.com/agent-workflow",
+        "tags": ["Agent", "信息流", "工作流"],
+        "related": [
+          {
+            "title": "Agent 工作流设计",
+            "relation": "延续",
+            "path": "03-Resources/Agent 工作流设计.md"
+          }
+        ]
+      },
+      "items": [
+        {
+          "title": "工具 A 支持后台定时任务",
+          "summary": "摘要：适合参考其触发器和任务回执设计。",
+          "source": "https://example.com/tool-a",
+          "tags": ["工具", "自动化"]
+        },
+        {
+          "title": "研究 B 讨论信息过载",
+          "summary": "摘要：支持将邮件改成分层阅读入口。",
+          "source": "https://example.com/paper-b",
+          "tags": ["研究", "阅读"]
+        }
+      ],
+      "more": [
+        { "label": "论文", "url": "https://example.com/paper" },
+        { "label": "工具", "url": "https://example.com/tool" },
+        { "label": "观点", "url": "https://example.com/opinion" }
+      ]
+    },
+    {
+      "name": "AI / 技术",
+      "accent": "#3D5A80",
+      "summary": "今日 18 条，精选 5 条；主线：Agent 工具转向后台执行。",
+      "featured": {
+        "title": "开发工具开始内置长期任务",
+        "judgment": "一句话判断：IDE 与 Agent 的边界正在变薄。",
+        "why": "为什么重要：agent 可借鉴任务状态、引用来源和结果回放。",
+        "source": "https://example.com/dev-agent",
+        "tags": ["AI", "DevTools", "Agent"]
+      },
+      "items": [
+        {
+          "title": "开源项目 C 增长很快",
+          "summary": "摘要：值得稍后评估是否接入 agent 采集链路。",
+          "source": "https://example.com/project-c",
+          "tags": ["开源", "采集"]
+        }
+      ],
+      "more": ["模型", "框架", "论文", "案例"]
+    }
+  ]
+}

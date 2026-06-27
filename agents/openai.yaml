@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Knowledge Board"
+  short_description: "Agent knowledge cards for channel delivery"
+  default_prompt: "Use $agent-knowledge-board to create an Agent Daily Board from agent-collected messages; first ask my preferred style, target delivery channels, and whether I have a knowledge base path."
