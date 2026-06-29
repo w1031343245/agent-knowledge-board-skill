@@ -21,7 +21,7 @@ Use this skill to:
 
 1. **Ask setup questions first**:
    - Ask which visual style the user wants:
-     - `realistic-whiteboard` for a realistic whiteboard with tactile sticky notes. This is the default recommendation.
+     - `realistic-whiteboard` for a taped-paper whiteboard with paper cards, red ink marks, blue boxes, and orange flow arrows. This is the default recommendation.
      - `premium-memo` for the earlier clean analyst memo / Linear / Notion style.
      - `markdown-only` for plain Markdown without HTML styling.
    - Ask whether the user has a knowledge base path for optional prior-note linking.
@@ -101,7 +101,7 @@ Do not ask more than this at startup unless the user's input is unusable.
 
 ## Email Design Rules
 
-- Prefer a realistic whiteboard surface with restrained sticky notes, paper texture, soft shadows, small magnets/tape cues, and clear category lanes.
+- Prefer a realistic whiteboard surface with taped paper cards, paper texture, soft shadows, red ink underlines/circled numbers, blue summary boxes, and clear category lanes.
 - Keep the board mature and organized; do not make it a childish or cluttered sticky-note wall.
 - Use sticky-note color to express information roles, not decoration.
 - Keep email width around 680-760px.
