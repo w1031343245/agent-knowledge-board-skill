@@ -167,7 +167,7 @@ def render(data: dict[str, Any]) -> str:
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{esc(title)}</title>
 </head>
-<body style="margin:0;padding:0;background:#f3f1ec;color:#2b2e2a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',Arial,sans-serif;">
+<body style="margin:0;padding:0;background:#f3f1ec;color:#2b2e2a;font-family:Georgia,'Times New Roman',serif;">
   <div style="padding:28px 12px;">
     <main style="max-width:720px;margin:0 auto;background:#fffefa;border:1px solid #e6e1d8;border-radius:18px;padding:30px 28px 34px 28px;">
       <header>

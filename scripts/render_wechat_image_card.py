@@ -190,7 +190,7 @@ def build_html(data: dict[str, Any]) -> str:
     html, body {{ margin:0; padding:0; width:{WIDTH}px; background:#f4efe5; }}
     body {{
       color:#202124;
-      font-family:"Microsoft YaHei","PingFang SC","Noto Sans CJK SC",Arial,sans-serif;
+      font-family:Georgia,"Times New Roman",serif;
       letter-spacing:0;
     }}
     .page {{

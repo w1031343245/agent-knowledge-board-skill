@@ -317,7 +317,7 @@ def render(data: dict[str, Any]) -> str:
     return f"""<!doctype html>
 <html>
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(title)}</title></head>
-<body style="margin:0;background:#f7f5ef;padding:24px 12px;font-family:'Segoe Print','Bradley Hand','Comic Sans MS','Microsoft YaHei',Arial,sans-serif;color:#222;">
+<body style="margin:0;background:#f7f5ef;padding:24px 12px;font-family:Georgia,'Times New Roman',serif;color:#222;">
   <main style="max-width:980px;margin:0 auto;background:#fffefb;border:1px solid #e5e0d4;box-shadow:0 16px 42px rgba(0,0,0,.10);padding:28px 34px 34px 34px;">
     <header style="padding-bottom:18px;margin-bottom:8px;">
       <div style="display:inline-block;vertical-align:top;padding:15px 22px 16px 22px;background:#fffaf0;border:1px solid #e2d7c4;border-radius:2px 1px 3px 1px;box-shadow:0 9px 18px rgba(44,33,18,.14),1px 2px 0 rgba(130,95,45,.08);transform:rotate(-2deg);position:relative;">
