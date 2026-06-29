@@ -2,40 +2,41 @@
 
 ## Direction
 
-Use this style when the user wants the knowledge cards to feel like papers taped onto a real whiteboard. The result should look like a photographed thinking board: paper strips, tape, ink marks, arrows, and clear sequential flow.
+Use this style for email/web daily-board output when the user wants a restrained hand-journal paper briefing. The result should feel like Agent-filtered intelligence: warm paper, light tape, red judgment cues, and consistent sections.
 
 ## Visual Language
 
-- Whiteboard surface: clean near-white with faint paper shadows and enough empty space.
-- Header: taped paper title on the left, blue boxed judgment strip in the middle, and a red stamped/circled label for emphasis.
-- Papers: off-white or lightly tinted sheets with tape at the top, slight rotations, uneven vertical offsets, and lightly irregular paper edges.
-- Ink language: red underlines and circled numbers for sequence; blue boxes for summaries/questions; orange arrows for flow.
-- Typography: use readable Chinese, but allow handwritten-style fallback fonts such as `Segoe Print` when rendering HTML previews.
+- Whiteboard surface: warm off-white with subtle paper texture and low-contrast dashed separators.
+- Header: one integrated cover with title, subtitle, today's thesis, meta line, and a small red judgment stamp.
+- Papers: mostly aligned story cards with very light shadows; tape only on the cover, section labels, and the first focus card.
+- Ink language: red for numbers, key judgment labels, risks, and action prompts; blue only for links and section-left rule lines.
+- Typography: Georgia family for all rendered HTML.
 
 ## Information Roles
 
-- Main paper card: featured item / `一句话判断`.
-- Follow-up paper cards: top 1-2 supporting summaries.
-- Blue strip: board summary or "engineer question" style framing.
-- Small taped note: compact index items.
-- Quiet inline line: optional `关联旧内容`.
+- Cover: top-level daily thesis and metrics.
+- Section header: paper label plus one-line section thesis.
+- Story cards: one full-width focus card, followed by two two-column cards for interpretation and action/impact.
+- Action bar: concrete next step for the section.
+- Related row: horizontal `延伸阅读` links.
 
 ## Layout
 
-Use a sequential whiteboard-paper layout:
+Use a consistent V2 daily-board layout:
 
-1. Top: taped title paper, blue judgment strip, red circled `今日判断`.
-2. Each board begins with a taped label paper and a blue summary strip.
-3. Cards are auto-packed per board: 1 card becomes a larger centered paper, 2 cards become balanced wide papers, and 3 cards become a main paper plus a stacked supporting column.
-4. Each main card has a red circled number and a red underline under the title.
-5. Extra useful items appear as a small taped `补充索引` note. Avoid generic `查看更多` calls to action.
-6. Avoid rigid grids: vary card angle, tape position, and vertical alignment slightly while keeping the reading order obvious.
-7. Shorten source URLs to readable domains/paths so long links do not distort the paper layout.
+1. Top: cover with title, subtitle, `今日主线`, judgment stamp, and one-line metadata.
+2. Each board begins with a paper section label and a blue left-rule section thesis.
+3. Each board shows up to three cards: the first card spans both columns, the next two sit in a two-column row.
+4. Put concrete `下一步` content below the cards.
+5. Put overflow and prior-note references into one horizontal `延伸阅读` row.
+6. Avoid rigid decoration overload: no large blue boxes, no repeated slogans, no heavy shadows.
+7. Shorten source URLs to readable domains so long links do not distort card layout.
+8. Keep the rendered page at 720px CSS width; export screenshots at 2x scale for chat-software readability.
 
 ## Density Rules
 
-- Keep each board to 1 featured paper, 1-2 supporting papers, and up to 8 mini-index labels.
-- If a board has too many items, keep only the useful names in `补充索引` and leave the full archive outside the email.
+- Keep each board to up to 3 core cards and 3 related links.
+- If a board has too many items, keep only the useful names in `延伸阅读` and leave the full archive outside the email.
 - Do not shrink note text below readability just to fit more content.
 
 ## Email Constraints
