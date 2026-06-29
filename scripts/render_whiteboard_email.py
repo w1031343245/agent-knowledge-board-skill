@@ -44,6 +44,13 @@ def link(label: str, url: str | None) -> str:
     return f'<a href="{esc(url)}" style="color:#174a91;text-decoration:none;">{safe_label}</a>'
 
 
+def source_label(source: Any) -> str:
+    if not source:
+        return ""
+    label = str(source).replace("https://", "").replace("http://", "").rstrip("/")
+    return label if len(label) <= 44 else label[:41] + "..."
+
+
 def tags_html(tags: list[Any] | None) -> str:
     if not tags:
         return ""
@@ -128,33 +135,103 @@ def blue_strip(text: str, width: int | None = None, angle: float = 0.0) -> str:
     )
 
 
-def featured_note(featured: dict[str, Any], number: int, accent: str, board_index: int) -> str:
-    if not featured:
+def entry_note(
+    item: dict[str, Any],
+    number: int,
+    width: int,
+    accent: str,
+    seed: int,
+    featured: bool = False,
+) -> str:
+    if not item:
         return ""
-    source = featured.get("source") or featured.get("url")
+    source = item.get("source") or item.get("url")
+    lead = item.get("judgment") or item.get("summary") or ""
     body = (
-        f'<div style="color:#C9362E;font-weight:700;line-height:21px;margin-bottom:8px;">{esc(featured.get("judgment", ""))}</div>'
-        f'<ul style="margin:8px 0 0 18px;padding:0;font-size:13px;line-height:22px;color:#2d2f2b;">'
+        f'<div style="color:#C9362E;font-weight:700;line-height:21px;margin-bottom:8px;">{esc(lead)}</div>'
     )
-    if featured.get("why"):
-        body += f"<li>{esc(featured.get('why'))}</li>"
+    details = []
+    if featured and item.get("why"):
+        details.append(esc(item.get("why")))
     if source:
-        body += f"<li>来源：{link(source, source)}</li>"
-    body += "</ul>"
-    if featured.get("tags"):
-        body += f'<div style="margin-top:10px;">{tags_html(featured.get("tags"))}</div>'
-    body += related_html(featured.get("related"))
+        details.append(f"来源：{link(source_label(source), source)}")
+    if details:
+        body += (
+            '<ul style="margin:8px 0 0 18px;padding:0;font-size:13px;line-height:22px;color:#2d2f2b;">'
+            + "".join(f"<li>{detail}</li>" for detail in details)
+            + "</ul>"
+        )
+    if item.get("tags"):
+        body += f'<div style="margin-top:10px;">{tags_html(item.get("tags"))}</div>'
+    if featured:
+        body += related_html(item.get("related"))
     return paper_note(
-        featured.get("title", "一句话判断"),
+        item.get("title", "一句话判断"),
         body,
         number=number,
-        width=248,
+        width=width,
         accent=accent,
-        angle=organic_angle(board_index),
-        top_margin=organic_top(board_index),
-        tape_offset=-8,
-        tape_angle=organic_angle(board_index + 2),
-        shape_seed=board_index,
+        paper=PAPER_COLORS[seed % len(PAPER_COLORS)],
+        angle=organic_angle(seed),
+        top_margin=organic_top(seed),
+        tape_offset=-8 if number % 2 else 8,
+        tape_angle=organic_angle(seed + 2),
+        shape_seed=seed,
+    )
+
+
+def board_entries(board: dict[str, Any], limit: int = 3) -> list[tuple[dict[str, Any], bool]]:
+    entries: list[tuple[dict[str, Any], bool]] = []
+    featured = board.get("featured") or {}
+    if featured.get("title"):
+        entries.append((featured, True))
+    for item in board.get("items") or []:
+        if item.get("title"):
+            entries.append((item, False))
+        if len(entries) >= limit:
+            break
+    return entries[:limit]
+
+
+def layout_widths(count: int) -> list[int]:
+    if count <= 1:
+        return [430]
+    if count == 2:
+        return [330, 330]
+    return [310, 270, 270]
+
+
+def arrow_html(seed: int, top: int = 70) -> str:
+    return (
+        f'<span style="display:inline-block;vertical-align:top;margin:{top}px 14px 0 6px;'
+        f'color:#F07B22;font-size:34px;line-height:38px;font-weight:800;'
+        f'transform:rotate({organic_angle(seed)}deg);">→</span>'
+    )
+
+
+def card_flow_html(cards: list[str], index: int) -> str:
+    visible_cards = [card for card in cards if card]
+    count = len(visible_cards)
+    if count == 0:
+        return ""
+    if count == 1:
+        return f'<div style="text-align:center;">{visible_cards[0]}</div>'
+    if count == 2:
+        return (
+            '<div style="display:inline-block;vertical-align:top;max-width:760px;">'
+            + visible_cards[0]
+            + arrow_html(index + 3, 78)
+            + visible_cards[1]
+            + "</div>"
+        )
+    return (
+        '<div style="display:inline-block;vertical-align:top;max-width:760px;">'
+        + visible_cards[0]
+        + arrow_html(index + 3, 82)
+        + '<div style="display:inline-block;vertical-align:top;width:300px;">'
+        + visible_cards[1]
+        + visible_cards[2]
+        + "</div></div>"
     )
 
 
@@ -167,34 +244,20 @@ def board_summary(summary: Any) -> str:
 
 def render_board(board: dict[str, Any], index: int) -> str:
     accent = "#C9362E"
-    blue = board.get("accent") or "#2F63A3"
-    featured = board.get("featured") or {}
-    items = board.get("items") or []
     more = board.get("more") or []
-    cards = [featured_note(featured, 1, accent, index)]
-    for item_index, item in enumerate(items[:2], start=2):
-        body = (
-            f'<div style="color:#C9362E;font-weight:700;margin-bottom:8px;">{esc(item.get("summary", ""))}</div>'
-            f'<div style="margin-top:8px;">{tags_html(item.get("tags"))}</div>'
+    entries = board_entries(board)
+    widths = layout_widths(len(entries))
+    cards = [
+        entry_note(
+            item,
+            number=item_index,
+            width=widths[item_index - 1],
+            accent=accent,
+            seed=index * 5 + item_index,
+            featured=is_featured,
         )
-        source = item.get("source") or item.get("url")
-        if source:
-            body += f'<div style="font-size:12px;line-height:18px;margin-top:8px;">来源：{link(source, source)}</div>'
-        cards.append(
-            paper_note(
-                item.get("title", "摘要"),
-                body,
-                number=item_index,
-                width=198,
-                accent=accent,
-                paper=PAPER_COLORS[(index + item_index) % len(PAPER_COLORS)],
-                angle=organic_angle(index * 3 + item_index),
-                top_margin=organic_top(index + item_index),
-                tape_offset=8 if item_index % 2 == 0 else -5,
-                tape_angle=organic_angle(index + item_index + 1),
-                shape_seed=index + item_index,
-            )
-        )
+        for item_index, (item, is_featured) in enumerate(entries, start=1)
+    ]
     mini = []
     for entry in more[:8]:
         if isinstance(entry, dict):
@@ -218,16 +281,7 @@ def render_board(board: dict[str, Any], index: int) -> str:
         if mini
         else ""
     )
-    flow_parts = []
-    for card_index, card in enumerate(card for card in cards if card):
-        if card_index:
-            arrow_top = 68 + ((index + card_index) % 3) * 10
-            arrow_angle = organic_angle(index + card_index + 3)
-            flow_parts.append(
-                f'<span style="display:inline-block;vertical-align:top;margin:{arrow_top}px 12px 0 2px;color:#F07B22;font-size:40px;line-height:40px;font-weight:800;transform:rotate({arrow_angle}deg);">→</span>'
-            )
-        flow_parts.append(card)
-    card_flow = "".join(flow_parts)
+    card_flow = card_flow_html(cards, index)
     label_angle = organic_angle(index + 1)
     summary_angle = organic_angle(index + 3) / 2
     return f"""

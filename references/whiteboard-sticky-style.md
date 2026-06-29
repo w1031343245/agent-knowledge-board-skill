@@ -26,10 +26,11 @@ Use a sequential whiteboard-paper layout:
 
 1. Top: taped title paper, blue judgment strip, red circled `今日判断`.
 2. Each board begins with a taped label paper and a blue summary strip.
-3. Cards flow left-to-right with orange arrows between them.
+3. Cards are auto-packed per board: 1 card becomes a larger centered paper, 2 cards become balanced wide papers, and 3 cards become a main paper plus a stacked supporting column.
 4. Each main card has a red circled number and a red underline under the title.
 5. Extra useful items appear as a small taped `补充索引` note. Avoid generic `查看更多` calls to action.
 6. Avoid rigid grids: vary card angle, tape position, and vertical alignment slightly while keeping the reading order obvious.
+7. Shorten source URLs to readable domains/paths so long links do not distort the paper layout.
 
 ## Density Rules
 
