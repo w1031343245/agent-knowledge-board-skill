@@ -12,7 +12,7 @@ Transform raw information streams from any agent or automation into a calm knowl
 Use this skill to:
 - List and prioritize today's collected messages.
 - Group information into category boards.
-- Summarize each board with one featured memo, several compact rows, and a "more" index.
+- Summarize each board with one featured memo, several compact rows, and an optional compact index for overflow items.
 - Link new items to prior knowledge only when a clearly relevant match exists.
 - Produce HTML email, Markdown fallback, and/or structured JSON.
 - Select an appropriate delivery format for each target channel.
@@ -47,7 +47,7 @@ Use this skill to:
 5. **Rank items**:
    - Featured memo: one strongest item per board.
    - Supporting rows: 2-4 useful items per board.
-   - More index: remaining items as compact links or labels.
+   - Compact index: remaining useful items as short links or labels.
    - Move weak, duplicate, or non-actionable items to `稍后读`.
 
 6. **Optionally associate prior knowledge**:
@@ -61,7 +61,7 @@ Use this skill to:
 7. **Write the brief**:
    - Start with a top-level `今日判断`.
    - Show metrics such as `5 个白板`, `精选 18 条`, `待阅读 42 条`.
-   - For each board, include a summary strip, one featured memo, compact list rows, and `查看更多 ->`.
+   - For each board, include a summary strip, one featured memo, compact list rows, and optional `补充索引` chips. Do not add a generic `查看更多` link unless the user explicitly provides a meaningful destination and asks for it.
    - Avoid cramming full articles into email; use the email as a reading radar.
    - Use the user's preferred board title when provided. Otherwise default to `Agent Daily Board`.
 

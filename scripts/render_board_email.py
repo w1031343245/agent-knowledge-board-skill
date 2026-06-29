@@ -144,7 +144,6 @@ def render_board(board: dict[str, Any], index: int) -> str:
       {render_featured(board.get("featured", {}), accent)}
       <div style="margin-top:4px;">{items_html}</div>
       {render_more(board.get("more"))}
-      <div style="margin-top:8px;font-size:13px;line-height:20px;">{link("查看更多 ->", board.get("url"))}</div>
     </section>
     """
 

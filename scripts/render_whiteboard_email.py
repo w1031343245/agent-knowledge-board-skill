@@ -10,7 +10,7 @@ from pathlib import Path
 from typing import Any
 
 
-NOTE_COLORS = ["#FFF1A8", "#DDECF7", "#DFF1DD", "#F8D1C9", "#E8DDF4", "#ECEAE3"]
+NOTE_COLORS = ["#F7F4EA", "#EEF5F8", "#F1F7EE", "#F8F0ED", "#F3EFF7", "#F4F2EE"]
 
 
 def esc(value: Any) -> str:
@@ -27,7 +27,13 @@ def link(label: str, url: str | None) -> str:
 def tags_html(tags: list[Any] | None) -> str:
     if not tags:
         return ""
-    return "".join(f'<span style="display:block;">- {esc(tag)}</span>' for tag in tags[:4])
+    return "".join(
+        '<span style="display:inline-block;margin:0 6px 6px 0;padding:3px 8px;'
+        'border:1px solid #ddd8cc;border-radius:999px;background:#fffdf8;'
+        'font-size:12px;line-height:16px;color:#5f635b;">'
+        f"{esc(tag)}</span>"
+        for tag in tags[:4]
+    )
 
 
 def related_html(related: list[dict[str, Any]] | None) -> str:
@@ -41,10 +47,8 @@ def related_html(related: list[dict[str, Any]] | None) -> str:
         url = target if target and str(target).startswith(("http://", "https://")) else None
         rows.append(f"{esc(relation)} - {link(title, url)}")
     return (
-        '<div style="display:inline-block;vertical-align:top;width:150px;min-height:58px;'
-        'margin:8px 8px 0 0;padding:10px 12px;background:#E8DDF4;'
-        'box-shadow:0 7px 14px rgba(40,35,20,.16);font-size:12px;line-height:18px;color:#34312f;">'
-        '<div style="font-weight:700;border-bottom:1px solid rgba(0,0,0,.18);margin-bottom:6px;">关联旧内容</div>'
+        '<div style="font-size:12px;line-height:18px;color:#62665f;margin-top:8px;">'
+        '<strong style="color:#343831;">关联旧内容：</strong>'
         + "<br>".join(rows)
         + "</div>"
     )
@@ -52,9 +56,8 @@ def related_html(related: list[dict[str, Any]] | None) -> str:
 
 def note(title: str, body: str, color: str, width: int = 148, pin: str = "#2f75c9") -> str:
     return f"""
-    <div style="display:inline-block;vertical-align:top;width:{width}px;min-height:112px;margin:8px 8px 0 0;padding:13px 14px;background:{color};box-shadow:0 9px 16px rgba(34,30,20,.18);font-size:13px;line-height:19px;color:#2b2924;position:relative;">
-      <div style="width:14px;height:14px;border-radius:50%;background:{pin};box-shadow:0 2px 4px rgba(0,0,0,.25);margin:-20px auto 7px auto;"></div>
-      <div style="font-size:15px;line-height:21px;font-weight:750;border-bottom:1px solid rgba(0,0,0,.18);padding-bottom:4px;margin-bottom:8px;">{esc(title)}</div>
+    <div style="display:inline-block;vertical-align:top;width:{width}px;min-height:104px;margin:8px 8px 0 0;padding:13px 14px;background:{color};border:1px solid #ded8cb;border-left:4px solid {pin};box-shadow:0 5px 12px rgba(34,30,20,.08);font-size:13px;line-height:19px;color:#2b2924;">
+      <div style="font-size:15px;line-height:21px;font-weight:750;padding-bottom:5px;margin-bottom:8px;border-bottom:1px solid rgba(0,0,0,.12);">{esc(title)}</div>
       <div>{body}</div>
     </div>
     """
@@ -64,13 +67,10 @@ def featured_note(featured: dict[str, Any]) -> str:
     if not featured:
         return ""
     source = featured.get("source") or featured.get("url")
-    body = (
-        f'<div style="margin-bottom:8px;">{esc(featured.get("judgment", ""))}</div>'
-        f'<div style="font-size:12px;line-height:18px;margin-bottom:8px;">{esc(featured.get("why", ""))}</div>'
-    )
+    body = f'<div style="margin-bottom:8px;">{esc(featured.get("judgment", ""))}</div>'
     if source:
         body += f'<div style="font-size:12px;">来源：{link(source, source)}</div>'
-    return note(featured.get("title", "一句话判断"), body, "#FFF1A8", width=245, pin="#E5A500")
+    return note(featured.get("title", "一句话判断"), body, "#FFF8D8", width=250, pin="#D99A00")
 
 
 def board_summary(summary: Any) -> str:
@@ -81,20 +81,26 @@ def board_summary(summary: Any) -> str:
 
 
 def render_board(board: dict[str, Any], index: int) -> str:
+    accent = board.get("accent") or "#2f75c9"
     featured = board.get("featured") or {}
     items = board.get("items") or []
     more = board.get("more") or []
     supporting = []
     if featured.get("why"):
-        supporting.append(note("为什么重要", esc(featured.get("why")), "#DDECF7", pin="#2f75c9"))
-    if featured.get("source") or featured.get("url"):
-        source = featured.get("source") or featured.get("url")
-        supporting.append(note("来源", f"- {link(source, source)}", "#DFF1DD", pin="#2E9D55"))
+        supporting.append(note("为什么重要", esc(featured.get("why")), "#EEF5F8", width=172, pin="#3F7CBF"))
     if featured.get("tags"):
-        supporting.append(note("标签", tags_html(featured.get("tags")), "#F8D1C9", pin="#e7e2d8"))
+        supporting.append(note("标签", tags_html(featured.get("tags")), "#F8F0ED", width=172, pin="#C56B58"))
     supporting.append(related_html(featured.get("related")))
     for item in items[:2]:
-        supporting.append(note(item.get("title", "摘要"), esc(item.get("summary", "")), NOTE_COLORS[(index + 1) % len(NOTE_COLORS)], width=160))
+        supporting.append(
+            note(
+                item.get("title", "摘要"),
+                esc(item.get("summary", "")),
+                NOTE_COLORS[(index + 1) % len(NOTE_COLORS)],
+                width=172,
+                pin=accent,
+            )
+        )
     mini = []
     for entry in more[:8]:
         if isinstance(entry, dict):
@@ -103,21 +109,29 @@ def render_board(board: dict[str, Any], index: int) -> str:
         else:
             label, url = str(entry), None
         mini.append(
-            '<span style="display:inline-block;margin:6px 6px 0 0;padding:6px 9px;'
-            'background:#F6F0C9;box-shadow:0 4px 8px rgba(30,25,15,.12);font-size:12px;">'
+            '<span style="display:inline-block;margin:6px 6px 0 0;padding:4px 8px;'
+            'background:#f8f6ee;border:1px solid #e2dccf;border-radius:999px;'
+            'font-size:12px;line-height:16px;color:#5f635d;">'
             f"{link(label, url)}</span>"
         )
+    mini_html = (
+        '<div style="margin-top:10px;padding-top:8px;border-top:1px solid #ebe6dc;">'
+        '<span style="font-size:12px;line-height:18px;color:#7a7f76;margin-right:6px;">补充索引</span>'
+        + "".join(mini)
+        + "</div>"
+        if mini
+        else ""
+    )
     return f"""
-    <section style="border-top:1px solid #cfd2cf;padding:18px 0 20px 0;">
-      <div style="display:inline-block;vertical-align:top;width:105px;margin-right:14px;">
-        <div style="display:inline-block;background:#f7f7f3;border:1px solid #d9d8d2;padding:8px 10px;box-shadow:0 3px 7px rgba(0,0,0,.12);font-size:18px;line-height:24px;font-weight:700;color:#174a91;">{esc(board.get("name", "Board"))}</div>
+    <section style="border-top:1px solid #d6d3ca;padding:20px 0 22px 0;">
+      <div style="display:inline-block;vertical-align:top;width:118px;margin-right:14px;">
+        <div style="border-left:5px solid {esc(accent)};padding:8px 0 8px 10px;font-size:18px;line-height:24px;font-weight:760;color:#20241f;">{esc(board.get("name", "Board"))}</div>
       </div>
-      <div style="display:inline-block;vertical-align:top;width:545px;">
-        <div style="font-size:12px;line-height:18px;color:#555;margin-bottom:4px;">{esc(board_summary(board.get("summary")))}</div>
+      <div style="display:inline-block;vertical-align:top;width:560px;">
+        <div style="font-size:12px;line-height:18px;color:#62665f;background:#f5f4ef;border:1px solid #e2ded3;padding:8px 10px;margin-bottom:8px;">{esc(board_summary(board.get("summary")))}</div>
         {featured_note(featured)}
         {"".join(supporting)}
-        <div>{''.join(mini)}</div>
-        <div style="margin-top:8px;font-size:13px;">{link("查看更多 ->", board.get("url"))}</div>
+        {mini_html}
       </div>
     </section>
     """
@@ -136,16 +150,16 @@ def render(data: dict[str, Any]) -> str:
     return f"""<!doctype html>
 <html>
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(data.get("title", "Agent Daily Board"))}</title></head>
-<body style="margin:0;background:#e9e2d6;padding:26px 12px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',Arial,sans-serif;color:#222;">
-  <main style="max-width:760px;margin:0 auto;background:#fbfbf7;border:10px solid #c8c8c3;border-radius:18px;box-shadow:0 18px 45px rgba(0,0,0,.18);padding:26px 28px 30px 28px;">
-    <header style="border-bottom:2px solid #1d3f93;padding-bottom:14px;margin-bottom:16px;">
-      <div style="font-size:34px;line-height:42px;font-weight:800;letter-spacing:.2px;">{esc(data.get("title", "Agent Daily Board"))}</div>
-      <div style="font-size:16px;line-height:24px;text-align:right;color:#232323;">{esc(data.get("date", ""))}</div>
+<body style="margin:0;background:#ebe7df;padding:24px 12px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',Arial,sans-serif;color:#222;">
+  <main style="max-width:760px;margin:0 auto;background:#fbfaf6;border:1px solid #c7c4bc;border-radius:10px;box-shadow:0 14px 36px rgba(0,0,0,.12);padding:26px 28px 30px 28px;">
+    <header style="border-bottom:2px solid #2c5c91;padding-bottom:14px;margin-bottom:16px;">
+      <div style="font-size:34px;line-height:42px;font-weight:800;letter-spacing:0;">{esc(data.get("title", "Agent Daily Board"))}</div>
+      <div style="font-size:15px;line-height:22px;text-align:right;color:#4f544e;">{esc(data.get("date", ""))}</div>
     </header>
-    <div style="background:#fff;border:1px solid #d8d4ca;border-radius:8px;box-shadow:0 5px 12px rgba(0,0,0,.12);padding:12px 14px;margin-bottom:14px;">
-      <strong style="font-size:20px;color:#222;border-bottom:2px solid #1d3f93;">今日判断</strong>
-      <span style="font-size:13px;line-height:20px;margin-left:14px;">{esc(data.get("overall_judgment", ""))}</span>
-      <span style="float:right;font-size:13px;">{esc(metrics)} {link("查看完整白板 ->", full_url) if full_url else ""}</span>
+    <div style="background:#ffffff;border:1px solid #ded9ce;border-left:5px solid #2c5c91;border-radius:6px;box-shadow:0 5px 12px rgba(0,0,0,.07);padding:12px 14px;margin-bottom:14px;">
+      <div style="font-size:18px;line-height:24px;font-weight:760;color:#20241f;">今日判断</div>
+      <div style="font-size:14px;line-height:22px;margin-top:6px;color:#343831;">{esc(data.get("overall_judgment", ""))}</div>
+      <div style="font-size:12px;line-height:18px;color:#6c7169;margin-top:8px;">{esc(metrics)} {link("查看完整白板", full_url) if full_url else ""}</div>
     </div>
     {boards}
   </main>

@@ -30,13 +30,13 @@ Top of email:
 2. Date
 3. `今日判断`: one concise synthesis sentence
 4. Metrics: board count, selected count, unread/backlog count
-5. Link: `查看完整白板`
+5. Optional link: `查看完整白板`, only when it points to a useful full board
 
 Each board:
 1. Board title and summary strip
 2. One featured memo
 3. 2-4 supporting rows
-4. More index with short chips or links
+4. Optional compact index with short chips or links. Do not add a generic `查看更多` link.
 
 ## Content Budgets
 
@@ -49,7 +49,7 @@ Per email:
 Per board:
 - 1 featured memo.
 - 2-4 supporting rows.
-- 4-12 more-index labels.
+- 4-12 compact-index labels when they add useful scan value.
 
 Per featured memo:
 - Title: 18-28 Chinese characters when possible.
