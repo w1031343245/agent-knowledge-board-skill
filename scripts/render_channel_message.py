@@ -208,6 +208,8 @@ def card_payload(data: dict[str, Any], channel: str) -> dict[str, Any]:
             "title": title,
             "full_card_artifact": "rendered_html",
             "recommended_renderer": "render_whiteboard_email.py",
+            "layout_version": "v2_daily_board_720",
+            "render_command": "python scripts/render_whiteboard_email.py <board.json> --output <board-whiteboard.html>",
             "fallback": markdown_preview(data, channel),
         }
     return {

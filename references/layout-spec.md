@@ -1,42 +1,55 @@
-# Agent Daily Board Layout Spec
+# Agent Daily Board V2 Layout Spec
 
 ## Design Direction
 
-Use a premium knowledge briefing style inspired by Readwise Reader digests, Notion clean pages, Linear issue updates, and calm analyst memos.
-
-The metaphor is "whiteboard thinking", not "literal sticky-note wall".
+Use the V2 daily-board email layout for `realistic-whiteboard`: restrained hand-journal paper, light tape, readable intelligence cards, and a fixed 720px body. The design should feel like an edited daily intelligence board, not a literal wall of scattered sticky notes.
 
 ## Visual Rules
 
-- Background: warm off-white or very light gray.
-- Email body: white or near-white, 680-760px wide.
-- Text: charcoal, never pure black.
-- Accent: thin left rails, small badges, or status dots only.
-- Sections: separated by quiet rules and spacing.
-- Cards: memo panels with clear hierarchy; avoid full-surface bright colors.
-- Shadows: subtle or none.
+- Page body: warm off-white paper at 720px CSS width.
+- Typography: Georgia family for all rendered HTML.
+- Blue: only for source links, extension-reading links, and thin section thesis left rules.
+- Red: only for sequence numbers, key judgment labels, risks, and action prompts.
+- Tape: only on the cover, section labels, and a small number of focus cards.
+- Shadows: subtle and low contrast.
+- Links: show readable domains only in cards.
 
 Avoid:
-- Childish sticky notes.
-- Large colorful tiles.
-- Neon gradients.
-- Dense mini-cards.
-- Decorative icons that do not carry information.
+- Large blue rectangle borders or summary boxes.
+- Orange flow arrows between cards.
+- Full paragraphs of red summary text.
+- Repeated slogans such as `持续跟踪，闭环优化`.
+- `补充索引` blocks or generic `查看更多` links.
+- Heavy rotations that make columns look broken.
 
 ## Information Hierarchy
 
-Top of email:
-1. Title: `Agent Daily Board` by default, or the user's preferred board title.
-2. Date
-3. `今日判断`: one concise synthesis sentence
-4. Metrics: board count, selected count, unread/backlog count
-5. Optional link: `查看完整白板`, only when it points to a useful full board
+Top cover:
+1. Title: `Agent Daily Board` by default, or the user's preferred title.
+2. Subtitle: `先抓重点，再做闭环`.
+3. `今日主线`: one concise synthesis sentence.
+4. Date and metrics on one quiet meta line.
+5. Small red `今日判断` stamp.
 
 Each board:
-1. Board title and summary strip
-2. One featured memo
-3. 2-4 supporting rows
-4. Optional compact index with short chips or links. Do not add a generic `查看更多` link.
+1. Paper section title.
+2. One-line thesis with a blue left rule.
+3. One full-width focus card.
+4. Two supporting cards in a two-column row.
+5. One concrete `下一步` action bar.
+6. One horizontal `延伸阅读` row with up to 3 links or labels.
+
+## Card Structure
+
+Each card should include:
+- Stage label: `事件`, `解读`, or `行动`.
+- Title: max 2-3 lines.
+- Judgment: max 2 lines.
+- Facts: up to 2 compact facts.
+- Tags: up to 3.
+- Source: domain only.
+
+Keep card heights consistent. The focus card may be shorter than the supporting cards, but cards in the same row should align.
 
 ## Content Budgets
 
@@ -44,27 +57,17 @@ Per email:
 - 4-6 boards.
 - 1 overall judgment.
 - 12-24 selected items.
-- Keep full content outside the email when there are many items.
+- Keep full archives outside the email.
 
 Per board:
-- 1 featured memo.
-- 2-4 supporting rows.
-- 4-12 compact-index labels when they add useful scan value.
-
-Per featured memo:
-- Title: 18-28 Chinese characters when possible.
-- Judgment: 40-70 Chinese characters.
-- Why it matters: 40-90 Chinese characters.
-- Tags: 2-4.
-- Related prior notes: 0-3. Show them only when clearly relevant.
+- 1 focus card.
+- 2 supporting cards.
+- 1 action bar.
+- 0-3 extension-reading labels.
 
 ## Knowledge Association Display
 
-Use small, quiet lines below important items:
-
-`关联旧内容：延续 - Agent 工作流设计`
-
-If no useful prior note is found, show nothing. Do not show "暂无关联", "未找到旧知识", or any other placeholder.
+If a prior note is useful, place its short label in the `延伸阅读` row or use one compact fact. If no useful prior note is found, show nothing. Do not show empty placeholders.
 
 Prefer relationship labels:
 - `延续`
@@ -76,8 +79,9 @@ Prefer relationship labels:
 
 ## Email Compatibility
 
-- Use inline CSS in the final HTML.
+- Use inline-friendly CSS and selectable text.
 - Avoid JavaScript.
 - Avoid external fonts.
-- Avoid layouts that require hover or click to reveal essential content.
+- Avoid hover-only interactions.
 - Use regular links for sources and full board navigation.
+- When creating a screenshot preview, export at 2x resolution.

@@ -7,12 +7,12 @@ description: Use when turning information collected by any agent, automation, ch
 
 ## Overview
 
-Transform raw information streams from any agent or automation into a calm knowledge-board brief. The current preferred visual direction is a realistic whiteboard with tactile sticky notes, while the earlier premium memo style remains acceptable for denser email clients.
+Transform raw information streams from any agent or automation into a calm knowledge-board brief. The current preferred visual direction is the V2 daily-board email: warm hand-journal paper, light tape, restrained red judgment cues, blue only for links and thin thesis rules, and a fixed 720px reading width.
 
 Use this skill to:
 - List and prioritize today's collected messages.
 - Group information into category boards.
-- Summarize each board with one featured memo, several compact rows, and an optional compact index for overflow items.
+- Summarize each board with a section note, one full-width focus card, two compact two-column cards, a concrete action bar, and a horizontal extension-reading row.
 - Link new items to prior knowledge only when a clearly relevant match exists.
 - Produce HTML email, Markdown fallback, and/or structured JSON.
 - Select an appropriate delivery format for each target channel.
@@ -21,7 +21,7 @@ Use this skill to:
 
 1. **Ask setup questions first**:
    - Ask which visual style the user wants:
-     - `realistic-whiteboard` for a taped-paper whiteboard with paper cards, red ink marks, blue boxes, and orange flow arrows. This is the default recommendation.
+     - `realistic-whiteboard` for the V2 daily-board email: hand-journal paper, light tape, red judgment cues, blue source links and section-left rules, no blue boxes, no orange flow arrows. This is the default recommendation.
      - `premium-memo` for the earlier clean analyst memo / Linear / Notion style.
      - `markdown-only` for plain Markdown without HTML styling.
    - Ask whether the user has a knowledge base path for optional prior-note linking.
@@ -45,9 +45,9 @@ Use this skill to:
    - Keep the email to 4-6 boards unless the user explicitly wants more.
 
 5. **Rank items**:
-   - Featured memo: one strongest item per board.
-   - Supporting rows: 2-4 useful items per board.
-   - Compact index: remaining useful items as short links or labels.
+   - Focus card: one strongest item per board.
+   - Supporting cards: the next two useful items per board.
+   - Extension row: remaining useful items as short labels or links.
    - Move weak, duplicate, or non-actionable items to `稍后读`.
 
 6. **Optionally associate prior knowledge**:
@@ -61,7 +61,7 @@ Use this skill to:
 7. **Write the brief**:
    - Start with a top-level `今日判断`.
    - Show metrics such as `5 个白板`, `精选 18 条`, `待阅读 42 条`.
-   - For each board, include a summary strip, one featured memo, compact list rows, and optional `补充索引` chips. Do not add a generic `查看更多` link unless the user explicitly provides a meaningful destination and asks for it.
+   - For each board, include a paper section title, one-line section thesis, one full-width focus card, two supporting cards, one concrete `下一步` action bar, and optional `延伸阅读`. Do not add a generic `查看更多` link unless the user explicitly provides a meaningful destination and asks for it.
    - Avoid cramming full articles into email; use the email as a reading radar.
    - Use the user's preferred board title when provided. Otherwise default to `Agent Daily Board`.
 
@@ -101,10 +101,12 @@ Do not ask more than this at startup unless the user's input is unusable.
 
 ## Email Design Rules
 
-- Prefer a realistic whiteboard surface with taped paper cards, paper texture, soft shadows, red ink underlines/circled numbers, blue summary boxes, and clear category lanes.
+- Prefer the V2 daily-board surface: warm paper, paper section labels, light tape only on cover/section/focus cards, soft shadows, red circled numbers and short judgment cues.
 - Keep the board mature and organized; do not make it a childish or cluttered sticky-note wall.
-- Use sticky-note color to express information roles, not decoration.
-- Keep email width around 680-760px.
+- Do not use large blue rectangles, blue outline boxes, orange flow arrows, repeated slogans, or `补充索引` blocks.
+- Use blue only for source links, extension-reading links, and thin section thesis left rules.
+- Use red only for sequence numbers, key conclusions, risks, and action prompts; never make the full summary paragraph red.
+- Keep the rendered email body at 720px CSS width. When exporting an image preview, use 2x resolution.
 - Use simple HTML and inline CSS; do not use JavaScript, external fonts, complex grids, or interactive-only behavior.
 - The email must remain useful even if images are blocked.
 
