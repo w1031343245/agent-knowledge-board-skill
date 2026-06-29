@@ -209,7 +209,8 @@ def card_payload(data: dict[str, Any], channel: str) -> dict[str, Any]:
             "full_card_artifact": "rendered_html",
             "recommended_renderer": "render_whiteboard_email.py",
             "layout_version": "v2_daily_board_720",
-            "render_command": "python scripts/render_whiteboard_email.py <board.json> --output <board-whiteboard.html>",
+            "render_command": "python scripts/render_whiteboard_email.py <board.json> --output <board-whiteboard.html> --split-pages-dir <pages-dir>",
+            "screenshot_rule": "Capture each split page separately; each page contains at most 2 sections.",
             "fallback": markdown_preview(data, channel),
         }
     return {

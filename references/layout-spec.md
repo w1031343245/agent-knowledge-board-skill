@@ -2,7 +2,7 @@
 
 ## Design Direction
 
-Use the V2 daily-board email layout for `realistic-whiteboard`: restrained hand-journal paper, light tape, readable intelligence cards, and a fixed 720px body. The design should feel like an edited daily intelligence board, not a literal wall of scattered sticky notes.
+Use the V2 daily-board email layout for `realistic-whiteboard`: restrained hand-journal paper, light tape, readable intelligence cards, and a fixed 720px body. The design should feel like an edited daily intelligence board, not a literal wall of scattered sticky notes. Optimize for screenshot forwarding and quick scanning, not long-webpage browsing.
 
 ## Visual Rules
 
@@ -13,6 +13,8 @@ Use the V2 daily-board email layout for `realistic-whiteboard`: restrained hand-
 - Tape: only on the cover, section labels, and a small number of focus cards.
 - Shadows: subtle and low contrast.
 - Links: show readable domains only in cards.
+- Cards: content-adaptive height; do not crop, hide, or overlap text.
+- Screenshot pages: at most 2 sections per page.
 
 Avoid:
 - Large blue rectangle borders or summary boxes.
@@ -21,6 +23,7 @@ Avoid:
 - Repeated slogans such as `持续跟踪，闭环优化`.
 - `补充索引` blocks or generic `查看更多` links.
 - Heavy rotations that make columns look broken.
+- Fixed card heights that cut off body text, tags, or source links.
 
 ## Information Hierarchy
 
@@ -34,22 +37,25 @@ Top cover:
 Each board:
 1. Paper section title.
 2. One-line thesis with a blue left rule.
-3. One full-width focus card.
-4. Two supporting cards in a two-column row.
-5. One concrete `下一步` action bar.
-6. One horizontal `延伸阅读` row with up to 3 links or labels.
+3. Adaptive card layout:
+   - Chain layout for clear event progression: event, judgment, impact.
+   - Parallel layout for independent hotspots: three equal cards without arrows.
+   - Main-side layout for two-card boards: one wider main card and one side card.
+4. One concrete `下一步` action bar.
+5. One horizontal `延伸阅读` row with up to 3 links or labels.
 
 ## Card Structure
 
 Each card should include:
-- Stage label: `事件`, `解读`, or `行动`.
+- Stage label: `事件`, `判断`, or `影响`.
 - Title: max 2-3 lines.
 - Judgment: max 2 lines.
 - Facts: up to 2 compact facts.
 - Tags: up to 3.
 - Source: domain only.
+- No related/prior-note lists inside the card body.
 
-Keep card heights consistent. The focus card may be shorter than the supporting cards, but cards in the same row should align.
+Keep text complete and visible. If content is too long, shorten the string before rendering instead of relying on CSS clipping.
 
 ## Content Budgets
 
@@ -84,4 +90,4 @@ Prefer relationship labels:
 - Avoid external fonts.
 - Avoid hover-only interactions.
 - Use regular links for sources and full board navigation.
-- When creating a screenshot preview, export at 2x resolution.
+- When creating a screenshot preview, export at 2x resolution and capture each split page separately.

@@ -16,7 +16,7 @@ Use this style for email/web daily-board output when the user wants a restrained
 
 - Cover: top-level daily thesis and metrics.
 - Section header: paper label plus one-line section thesis.
-- Story cards: one full-width focus card, followed by two two-column cards for interpretation and action/impact.
+- Story cards: adaptive layout. Use chain cards only for real event progression, parallel cards for independent hotspots, and main-side layout for two important items.
 - Action bar: concrete next step for the section.
 - Related row: horizontal `延伸阅读` links.
 
@@ -26,18 +26,20 @@ Use a consistent V2 daily-board layout:
 
 1. Top: cover with title, subtitle, `今日主线`, judgment stamp, and one-line metadata.
 2. Each board begins with a paper section label and a blue left-rule section thesis.
-3. Each board shows up to three cards: the first card spans both columns, the next two sit in a two-column row.
+3. Each board shows up to three cards using the correct logic layout; do not force a third card.
 4. Put concrete `下一步` content below the cards.
 5. Put overflow and prior-note references into one horizontal `延伸阅读` row.
 6. Avoid rigid decoration overload: no large blue boxes, no repeated slogans, no heavy shadows.
 7. Shorten source URLs to readable domains so long links do not distort card layout.
 8. Keep the rendered page at 720px CSS width; export screenshots at 2x scale for chat-software readability.
+9. Split screenshot-ready output into pages of at most two sections.
 
 ## Density Rules
 
 - Keep each board to up to 3 core cards and 3 related links.
 - If a board has too many items, keep only the useful names in `延伸阅读` and leave the full archive outside the email.
 - Do not shrink note text below readability just to fit more content.
+- Do not rely on fixed heights, hidden overflow, or CSS clipping; shorten text before rendering.
 
 ## Email Constraints
 

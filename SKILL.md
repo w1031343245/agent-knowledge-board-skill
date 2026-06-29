@@ -12,7 +12,7 @@ Transform raw information streams from any agent or automation into a calm knowl
 Use this skill to:
 - List and prioritize today's collected messages.
 - Group information into category boards.
-- Summarize each board with a section note, one full-width focus card, two compact two-column cards, a concrete action bar, and a horizontal extension-reading row.
+- Summarize each board with a section note, adaptive cards, a concrete action bar, and a horizontal extension-reading row.
 - Link new items to prior knowledge only when a clearly relevant match exists.
 - Produce HTML email, Markdown fallback, and/or structured JSON.
 - Select an appropriate delivery format for each target channel.
@@ -45,8 +45,10 @@ Use this skill to:
    - Keep the email to 4-6 boards unless the user explicitly wants more.
 
 5. **Rank items**:
-   - Focus card: one strongest item per board.
-   - Supporting cards: the next two useful items per board.
+   - Use up to 3 useful items per board.
+   - Use chain layout only when the items have clear causality, time progression, or logical transmission.
+   - Use parallel layout for independent hotspots.
+   - Use main-side layout when only 2 items matter; do not invent a third item.
    - Extension row: remaining useful items as short labels or links.
    - Move weak, duplicate, or non-actionable items to `稍后读`.
 
@@ -61,7 +63,8 @@ Use this skill to:
 7. **Write the brief**:
    - Start with a top-level `今日判断`.
    - Show metrics such as `5 个白板`, `精选 18 条`, `待阅读 42 条`.
-   - For each board, include a paper section title, one-line section thesis, one full-width focus card, two supporting cards, one concrete `下一步` action bar, and optional `延伸阅读`. Do not add a generic `查看更多` link unless the user explicitly provides a meaningful destination and asks for it.
+   - For each board, include a paper section title, one-line section thesis, adaptive cards, one concrete `下一步` action bar, and optional `延伸阅读`. Do not add a generic `查看更多` link unless the user explicitly provides a meaningful destination and asks for it.
+   - Keep each screenshot page to at most 2 boards. For image forwarding, split long reports into multiple pages.
    - Avoid cramming full articles into email; use the email as a reading radar.
    - Use the user's preferred board title when provided. Otherwise default to `Agent Daily Board`.
 
@@ -107,6 +110,8 @@ Do not ask more than this at startup unless the user's input is unusable.
 - Use blue only for source links, extension-reading links, and thin section thesis left rules.
 - Use red only for sequence numbers, key conclusions, risks, and action prompts; never make the full summary paragraph red.
 - Keep the rendered email body at 720px CSS width. When exporting an image preview, use 2x resolution.
+- Do not use fixed card heights or hidden overflow. Shorten text before rendering so all visible text is complete.
+- Put `下一步` only in the section action bar, not as a news card.
 - Use simple HTML and inline CSS; do not use JavaScript, external fonts, complex grids, or interactive-only behavior.
 - The email must remain useful even if images are blocked.
 
