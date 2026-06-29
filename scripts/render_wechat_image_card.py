@@ -203,6 +203,12 @@ def build_html(data: dict[str, Any]) -> str:
     }}
     .cover {{
       position:relative;
+      display:grid;
+      grid-template-columns:330px 1fr 78px;
+      grid-template-rows:auto auto auto;
+      column-gap:24px;
+      row-gap:8px;
+      align-items:start;
       min-height:158px;
       padding:24px 24px 18px 58px;
       border:1px solid #ddcfba;
@@ -231,6 +237,8 @@ def build_html(data: dict[str, Any]) -> str:
       box-shadow:0 2px 8px rgba(70,45,20,.12);
     }}
     .cover-title {{
+      grid-column:1;
+      grid-row:1;
       width:330px;
       font-size:38px;
       line-height:1.08;
@@ -238,6 +246,8 @@ def build_html(data: dict[str, Any]) -> str:
       margin:0;
     }}
     .cover-subtitle {{
+      grid-column:1;
+      grid-row:2;
       display:inline-block;
       margin-top:10px;
       color:#d43b2f;
@@ -247,21 +257,21 @@ def build_html(data: dict[str, Any]) -> str:
       border-bottom:4px solid rgba(212,59,47,.85);
     }}
     .mainline {{
-      position:absolute;
-      left:382px;
-      top:34px;
-      width:210px;
+      position:relative;
+      grid-column:2;
+      grid-row:1 / 3;
+      width:auto;
       min-height:72px;
       padding:0 0 0 14px;
       border-left:4px solid #1666ad;
       font-size:14px;
-      line-height:1.65;
+      line-height:1.58;
     }}
     .mainline strong {{ display:block; margin-bottom:2px; }}
     .stamp {{
-      position:absolute;
-      right:20px;
-      top:22px;
+      position:relative;
+      grid-column:3;
+      grid-row:1 / 3;
       width:72px;
       height:72px;
       border:3px solid #d43b2f;
@@ -277,24 +287,24 @@ def build_html(data: dict[str, Any]) -> str:
       transform:rotate(5deg);
     }}
     .cover-meta {{
-      position:absolute;
-      left:300px;
-      right:24px;
-      bottom:16px;
+      position:relative;
+      grid-column:1 / 4;
+      grid-row:3;
       padding-top:10px;
+      margin-top:2px;
       border-top:1px dashed #dbcdb8;
       color:#4b4d4f;
       display:flex;
-      gap:14px;
+      gap:8px;
       align-items:center;
-      justify-content:flex-start;
-      font-size:12px;
+      justify-content:flex-end;
+      font-size:11px;
       white-space:nowrap;
     }}
     .cover-meta span + span::before {{
       content:"|";
       color:#b7a994;
-      margin-right:8px;
+      margin-right:6px;
     }}
     .section {{
       padding:18px 18px 0;
