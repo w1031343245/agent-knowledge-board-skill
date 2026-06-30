@@ -2,14 +2,14 @@
 
 ## Direction
 
-Use this style for email/web daily-board output when the user wants a restrained hand-journal paper briefing. The result should feel like Agent-filtered intelligence: warm paper, light tape, red judgment cues, and consistent sections.
+Use this style for email/web daily-board output when the user wants a ljg-card-inspired paper briefing. The result should feel like Agent-filtered intelligence: warm paper, strong reading hierarchy, red judgment cues, and consistent sections.
 
 ## Visual Language
 
-- Whiteboard surface: warm off-white with subtle paper texture and low-contrast dashed separators.
+- Surface: warm off-white with subtle paper texture and quiet separators.
 - Header: one integrated cover with title, subtitle, today's thesis, meta line, and a small red judgment stamp.
-- Papers: mostly aligned story cards with very light shadows; tape only on the cover, section labels, and the first focus card.
-- Ink language: red for numbers, key judgment labels, risks, and action prompts; blue only for links and section-left rule lines.
+- Cards: mostly aligned ljg-style reading cards with very light shadows; avoid sticky-note/tape-heavy treatment in email.
+- Ink language: red for numbers, key judgment labels, risks, and action prompts; blue only for links.
 - Typography: Georgia family for all rendered HTML.
 
 ## Information Roles
@@ -25,11 +25,11 @@ Use this style for email/web daily-board output when the user wants a restrained
 Use a consistent V2 daily-board layout:
 
 1. Top: cover with title, subtitle, `今日主线`, judgment stamp, and one-line metadata.
-2. Each board begins with a paper section label and a blue left-rule section thesis.
+2. Each board begins with a strong section title and an accent left-rule section thesis.
 3. Each board shows up to three cards using the correct logic layout; do not force a third card.
 4. Put concrete `下一步` content below the cards.
 5. Put overflow and prior-note references into one horizontal `延伸阅读` row.
-6. Avoid rigid decoration overload: no large blue boxes, no repeated slogans, no heavy shadows.
+6. Avoid rigid decoration overload: no large blue boxes, no repeated slogans, no heavy shadows, no scrapbook clutter.
 7. Shorten source URLs to readable domains so long links do not distort card layout.
 8. Keep the rendered page at 720px CSS width; export screenshots at 2x scale for chat-software readability.
 9. Split screenshot-ready output into pages of at most two sections.

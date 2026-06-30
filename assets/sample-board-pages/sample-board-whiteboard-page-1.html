@@ -7,52 +7,50 @@
   <style>
 
     :root {
-      --ink:#20242a;
-      --muted:#66707a;
-      --red:#e6463d;
-      --blue:#2f6db2;
-      --paper:#fffdf8;
-      --paper-warm:#f7f0e4;
-      --border:#eadfce;
-      --line:#e4d9ca;
-      --link:#2d72c5;
+      --ink:#1d1d1f;
+      --muted:#6e6e73;
+      --dim:#a09a92;
+      --red:#d94a3f;
+      --accent:#7c6853;
+      --paper:#faf8f4;
+      --panel:#fffdf8;
+      --border:#e6ded2;
+      --line:#e5dfd5;
+      --link:#1f68b3;
     }
     * { box-sizing:border-box; }
     body {
       margin:0;
       padding:24px 10px;
-      background:#f4efe6;
+      background:#efebe3;
       color:var(--ink);
       font-family:Georgia,'Times New Roman',serif;
     }
     .daily-board {
       width:720px;
       margin:0 auto 22px;
-      padding:20px;
-      background:#fbf6ed;
-      border:1px solid #e5dac8;
-      box-shadow:0 10px 24px rgba(54,42,28,.08);
+      padding:42px 46px 38px;
+      background:var(--paper);
+      border:1px solid #e4dccf;
+      box-shadow:0 12px 28px rgba(54,42,28,.07);
       break-after:page;
     }
     .cover {
       position:relative;
       display:grid;
-      grid-template-columns:292px 1fr 64px;
-      gap:16px;
-      padding:24px 22px 18px;
-      background:#fff8ea;
-      border:1px solid #dfd0ba;
-      box-shadow:0 6px 14px rgba(53,44,34,.06);
+      grid-template-columns:280px 1fr 58px;
+      gap:18px;
+      padding:0 0 26px;
+      border-bottom:1px solid var(--line);
     }
     .mini-cover {
       display:flex;
       justify-content:space-between;
       align-items:center;
       gap:16px;
-      padding:14px 18px;
-      background:#fff8ea;
-      border:1px solid #dfd0ba;
-      color:#3c4147;
+      padding:0 0 18px;
+      border-bottom:1px solid var(--line);
+      color:var(--muted);
       font-size:14px;
     }
     .mini-cover strong {
@@ -62,20 +60,9 @@
     .brand-note {
       position:relative;
     }
-    .brand-note::before, .section-header h2::before, .board-section[data-layout="chain"] .story-card-1::before {
-      content:"";
-      position:absolute;
-      left:22px;
-      top:-16px;
-      width:68px;
-      height:22px;
-      background:#e6c99e;
-      opacity:.50;
-      transform:rotate(-7deg);
-    }
     .brand-note h1 {
       margin:0;
-      font-size:42px;
+      font-size:48px;
       line-height:1.05;
       font-weight:900;
       letter-spacing:0;
@@ -84,13 +71,13 @@
       display:inline-block;
       margin:15px 0 0;
       color:var(--red);
-      font-size:22px;
+      font-size:21px;
       font-weight:800;
-      border-bottom:4px solid rgba(230,70,61,.75);
+      border-bottom:4px solid rgba(217,74,63,.62);
     }
     .daily-thesis {
       padding-left:14px;
-      border-left:5px solid var(--blue);
+      border-left:4px solid var(--accent);
     }
     .daily-thesis span {
       display:block;
@@ -102,6 +89,7 @@
       margin:0;
       font-size:16px;
       line-height:1.62;
+      color:#303236;
     }
     .judgement-stamp {
       width:58px;
@@ -122,16 +110,16 @@
       grid-column:1 / -1;
       margin-top:8px;
       padding-top:14px;
-      border-top:1px dashed #d9cbb6;
-      color:#41464b;
+      border-top:1px solid var(--line);
+      color:var(--muted);
       text-align:center;
       font-size:14px;
       line-height:1.4;
     }
     .board-section {
-      margin-top:24px;
-      padding-top:18px;
-      border-top:1px dashed var(--line);
+      margin-top:30px;
+      padding-top:28px;
+      border-top:1px solid var(--line);
       break-inside:avoid;
       page-break-inside:avoid;
     }
@@ -139,17 +127,17 @@
       display:flex;
       align-items:center;
       gap:18px;
-      margin-bottom:14px;
+      margin-bottom:18px;
     }
     .section-header h2 {
       position:relative;
       min-width:126px;
       margin:0;
-      padding:10px 16px;
-      background:#fff8ea;
-      border:1px solid var(--border);
-      box-shadow:0 5px 10px rgba(53,44,34,.055);
-      font-size:25px;
+      padding:0;
+      background:transparent;
+      border:0;
+      box-shadow:none;
+      font-size:26px;
       line-height:1.1;
       font-weight:900;
       white-space:nowrap;
@@ -157,17 +145,17 @@
     .section-header h2::after {
       content:"";
       display:block;
-      width:74px;
-      height:4px;
-      margin-top:5px;
+      width:48px;
+      height:3px;
+      margin-top:7px;
       background:var(--red);
     }
     .section-header p {
       flex:1;
       margin:0;
       padding-left:13px;
-      border-left:4px solid var(--blue);
-      color:#3c4147;
+      border-left:3px solid var(--accent);
+      color:#3f4246;
       font-size:15px;
       line-height:1.5;
     }
@@ -196,19 +184,10 @@
       position:relative;
       padding:18px 18px 16px;
       border:1px solid var(--border);
-      border-radius:7px;
-      box-shadow:0 6px 14px rgba(53,44,34,.06);
+      border-radius:0;
+      box-shadow:0 4px 10px rgba(53,44,34,.04);
       display:flex;
       flex-direction:column;
-    }
-    .board-section[data-layout="chain"] .story-card:not(:last-child)::after {
-      content:"→";
-      position:absolute;
-      right:-24px;
-      top:45%;
-      color:#f07b25;
-      font-size:24px;
-      font-weight:700;
     }
     .card-kicker {
       display:flex;
@@ -235,7 +214,7 @@
       margin:0 0 9px;
       color:var(--ink);
       font-size:20px;
-      line-height:1.25;
+      line-height:1.28;
       overflow-wrap:anywhere;
     }
     .board-section[data-layout="chain"] .story-card h3,
@@ -271,7 +250,7 @@
       padding:3px 8px;
       border:1px solid #d8cfc1;
       border-radius:999px;
-      background:rgba(255,255,255,.70);
+      background:rgba(255,255,255,.58);
       color:#4f565d;
       font-size:12px;
       line-height:1.2;
@@ -288,7 +267,7 @@
       margin-top:14px;
       padding:12px 16px;
       border-left:4px solid var(--red);
-      background:#fff8ef;
+      background:#fffaf3;
       color:var(--ink);
       font-size:15px;
       line-height:1.5;
@@ -296,8 +275,8 @@
     .related-row {
       margin-top:10px;
       padding:10px 16px;
-      background:#eef5fc;
-      color:#315a8a;
+      background:#f3f6f8;
+      color:#405f7f;
       font-size:14px;
       line-height:1.45;
     }
@@ -349,7 +328,7 @@
       </article>
     
 
-      <article class="story-card story-card-2" style="background:#fff8f5;">
+      <article class="story-card story-card-2" style="background:#faf8f4;">
         <div class="card-kicker"><span>2</span>判断</div>
         <h3>工具 A 支持后台定时任务</h3>
         <p class="insight"><strong>摘要：</strong>适合参考其触发器和任务回执设计。</p>
@@ -361,7 +340,7 @@
       </article>
     
 
-      <article class="story-card story-card-3" style="background:#f8fbf7;">
+      <article class="story-card story-card-3" style="background:#f7f8fa;">
         <div class="card-kicker"><span>3</span>影响</div>
         <h3>研究 B 讨论信息过载</h3>
         <p class="insight"><strong>摘要：</strong>支持将邮件改成分层阅读入口。</p>
@@ -396,7 +375,7 @@
       </article>
     
 
-      <article class="story-card story-card-2" style="background:#fff8f5;">
+      <article class="story-card story-card-2" style="background:#faf8f4;">
         <div class="card-kicker"><span>2</span>判断</div>
         <h3>开源项目 C 增长很快</h3>
         <p class="insight"><strong>摘要：</strong>值得稍后评估是否接入 agent 采集链路。</p>

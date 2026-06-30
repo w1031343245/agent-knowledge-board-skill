@@ -7,7 +7,7 @@ description: Use when turning information collected by any agent, automation, ch
 
 ## Overview
 
-Transform raw information streams from any agent or automation into a calm knowledge-board brief. The current preferred visual direction is the V2 daily-board email: warm hand-journal paper, light tape, restrained red judgment cues, blue only for links and thin thesis rules, and a fixed 720px reading width.
+Transform raw information streams from any agent or automation into a calm knowledge-board brief. The current preferred visual direction is a ljg-card-inspired daily-board email: warm paper, strong reading hierarchy, restrained red judgment cues, link-blue only where useful, and a fixed 720px reading width.
 
 Use this skill to:
 - List and prioritize today's collected messages.
@@ -21,7 +21,7 @@ Use this skill to:
 
 1. **Ask setup questions first**:
    - Ask which visual style the user wants:
-     - `realistic-whiteboard` for the V2 daily-board email: hand-journal paper, light tape, red judgment cues, blue source links and section-left rules, no blue boxes, no orange flow arrows. This is the default recommendation.
+     - `realistic-whiteboard` for the ljg-card-inspired daily-board email: warm paper, strong typography, red judgment cues, blue source links, no blue boxes, no orange flow arrows. This is the default recommendation.
      - `premium-memo` for the earlier clean analyst memo / Linear / Notion style.
      - `markdown-only` for plain Markdown without HTML styling.
    - Ask whether the user has a knowledge base path for optional prior-note linking.

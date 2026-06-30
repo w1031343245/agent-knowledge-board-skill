@@ -2,7 +2,7 @@
 
 ## Design Direction
 
-Use the V2 daily-board email layout for `realistic-whiteboard`: restrained hand-journal paper, light tape, readable intelligence cards, and a fixed 720px body. The design should feel like an edited daily intelligence board, not a literal wall of scattered sticky notes. Optimize for screenshot forwarding and quick scanning, not long-webpage browsing.
+Use the V2 daily-board email layout for `realistic-whiteboard`: ljg-card-inspired reading cards, restrained paper tone, readable intelligence modules, and a fixed 720px body. The design should feel like an edited daily intelligence board, not a literal wall of scattered sticky notes. Optimize for email reading first, with screenshot forwarding as a secondary use.
 
 ## Visual Rules
 
@@ -10,7 +10,7 @@ Use the V2 daily-board email layout for `realistic-whiteboard`: restrained hand-
 - Typography: Georgia family for all rendered HTML.
 - Blue: only for source links, extension-reading links, and thin section thesis left rules.
 - Red: only for sequence numbers, key judgment labels, risks, and action prompts.
-- Tape: only on the cover, section labels, and a small number of focus cards.
+- Tape: avoid in email HTML; keep the look closer to ljg-card reading cards than sticky-note boards.
 - Shadows: subtle and low contrast.
 - Links: show readable domains only in cards.
 - Cards: content-adaptive height; do not crop, hide, or overlap text.
@@ -24,6 +24,7 @@ Avoid:
 - `补充索引` blocks or generic `查看更多` links.
 - Heavy rotations that make columns look broken.
 - Fixed card heights that cut off body text, tags, or source links.
+- Sticky-note-heavy treatment, decorative tape on every card, or scrapbook-style clutter.
 
 ## Information Hierarchy
 
