@@ -18,13 +18,13 @@ Current `card_payload` values are channel card specs. They are intentionally sha
 
 | Channel | Best card output | What to include | What to avoid |
 |---|---|---|---|
-| `email` | Full HTML board card | Complete board, source links, optional related notes | Platform-specific chat JSON |
+| `email` | Full HTML board card + optional ljg-card multi-image summary | Selectable complete board, source links, optional summary PNGs | Pure image-only email |
 | `web` | Full web board card | Complete board, stable URL, share image | Chat-only truncation |
 | `feishu` / `lark` | Message card | Header, metrics, board modules, button to full board | Full HTML, dense sticky notes |
 | `dingtalk` | ActionCard | Title, short summary, key bullets, button/link | Long nested sections |
 | `wecom` / `enterprise-wechat` | Template card or news card | Title, description, key boards, full-board link | Long article body in chat |
 | `wechat-mp` | Article card / draft structure | Cover/title, digest, sections, sources | Raw webhook notification style |
-| `wechat` | PNG image card | One-screen visual card, title, judgment, metrics, 3-5 sections, optional full-board link | Sending long text blocks as the primary message |
+| `wechat` | ljg-card `-m` style multi-image cards | 1080x1440 cards: cover, then 1-2 sections per card, optional full-board link | Sending long text blocks or one very tall image as the primary message |
 | `markdown` | Markdown card fallback | Complete readable fallback | HTML-only visual assumptions |
 | unknown | Generic link card | Title, judgment, board summaries, full-board link | Pretending unsupported platforms have native cards |
 
@@ -57,15 +57,20 @@ For Feishu, DingTalk, and WeCom cards:
 
 Keep the chat card as a door, not the room.
 
-## Personal WeChat Image Card
+## Personal WeChat Image Cards
 
 Personal WeChat should use an actual image message as the primary artifact, not a gray text block or long Markdown message.
 
-- Generate static HTML first, then screenshot it into PNG with `scripts/render_wechat_image_card.py`.
-- Keep the image width at 1080px and let height adapt to content.
-- Show one title, one `今日判断`, 3-4 metrics, and 3-5 compact sections.
+- Generate static HTML first, then screenshot it into PNGs with `scripts/render_wechat_image_card.py`.
+- Use ljg-card `-m` style multi-card output: each card is 1080x1440.
+- Card 1 is the cover and today's mainline. Later cards contain at most 2 sections each.
+- Show one title, one `今日判断`, 3-4 metrics, and compact section cards.
 - Use text fallback only for accessibility, manual forwarding, or when image sending fails.
 - Do not use unofficial automation unless the user explicitly accepts that risk.
+
+## Email Summary Images
+
+Email should keep the V2 HTML body as primary because it is searchable, selectable, and link-friendly. If the sender wants a forwardable visual preview, attach or embed the same ljg-card `-m` PNG set as a secondary summary artifact.
 
 ## Output Contract
 

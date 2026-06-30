@@ -196,8 +196,10 @@ def card_payload(data: dict[str, Any], channel: str) -> dict[str, Any]:
             "recommended_renderer": "render_wechat_image_card.py",
             "rendering_method": "html_to_png_screenshot",
             "image_format": "png",
-            "image_size": "1080px wide, height auto",
-            "send_as": "image_message",
+            "layout_version": "ljg_card_m_multi_1080x1440",
+            "image_size": "1080x1440 per card",
+            "render_command": "python scripts/render_wechat_image_card.py <board.json> --output <board-wechat-card.png>",
+            "send_as": "multi_image_message",
             "url": full_url if full_url != "[完整白板链接待填]" else "",
             "manual_forward_text": f"{title}：{judgment}\n完整白板：{full_url}",
             "fallback": markdown_preview(data, channel),
@@ -211,6 +213,8 @@ def card_payload(data: dict[str, Any], channel: str) -> dict[str, Any]:
             "layout_version": "v2_daily_board_720",
             "render_command": "python scripts/render_whiteboard_email.py <board.json> --output <board-whiteboard.html> --split-pages-dir <pages-dir>",
             "screenshot_rule": "Capture each split page separately; each page contains at most 2 sections.",
+            "optional_summary_renderer": "render_wechat_image_card.py",
+            "optional_summary_layout": "ljg_card_m_multi_1080x1440",
             "fallback": markdown_preview(data, channel),
         }
     return {

@@ -14,7 +14,7 @@ Use this skill to:
 - Group information into category boards.
 - Summarize each board with a section note, adaptive cards, a concrete action bar, and a horizontal extension-reading row.
 - Link new items to prior knowledge only when a clearly relevant match exists.
-- Produce HTML email, Markdown fallback, and/or structured JSON.
+- Produce HTML email, ljg-card-style multi-image summaries, Markdown fallback, and/or structured JSON.
 - Select an appropriate delivery format for each target channel.
 
 ## Quick Workflow
@@ -72,7 +72,7 @@ Use this skill to:
    - `realistic-whiteboard`: use `scripts/render_whiteboard_email.py`.
    - `premium-memo`: use `scripts/render_board_email.py`.
    - `markdown-only`: output the hierarchy as Markdown and do not run a renderer.
-   - For personal WeChat image delivery, use `scripts/render_wechat_image_card.py` to build a static HTML card and screenshot it into a PNG from the same board JSON.
+   - For personal WeChat image delivery, use `scripts/render_wechat_image_card.py` to build ljg-card `-m` style 1080x1440 multi-card PNGs from the same board JSON.
    - For design decisions, read `references/layout-spec.md`.
    - For the realistic style direction, read `references/whiteboard-sticky-style.md`.
    - For Markdown-only contexts, use the same hierarchy without the HTML styling.
@@ -119,12 +119,12 @@ Do not ask more than this at startup unless the user's input is unusable.
 
 - Treat the board JSON as the canonical source. Never rewrite content separately per channel.
 - Prefer card-style delivery on every channel.
-- Email and web receive full visual board cards.
+- Email and web receive full visual board cards. Email may additionally include ljg-card `-m` style PNG summaries, but the selectable HTML body remains primary.
 - Feishu/Lark receives native message-card style payloads.
 - DingTalk receives ActionCard-style payloads.
 - WeCom receives template-card/news-card style payloads when possible.
 - WeChat public account receives article-card/draft structure.
-- Personal WeChat receives a generated PNG image card as the primary artifact, preferably created from an HTML card screenshot; text copy is only a fallback. Do not rely on unofficial personal-account automation.
+- Personal WeChat receives generated ljg-card `-m` style PNG cards as the primary artifact, preferably created from HTML card screenshots; text copy is only a fallback. Do not rely on unofficial personal-account automation.
 - Markdown is only the fallback preview or fallback body, not the preferred channel artifact.
 - If a channel is unknown, generate a generic link-card spec plus Markdown fallback.
 
